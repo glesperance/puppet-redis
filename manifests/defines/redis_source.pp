@@ -1,4 +1,5 @@
 define redis_source(
+    $enable_service,
     $version = '2.2.13',
     $path = '/usr/local/src',
     $bin = '/usr/local/bin',
@@ -48,7 +49,9 @@ define redis_source(
         group => $group,
     }
     
-    redis::service { 'default_redis_service': }
+    redis::service { 'default_redis_service': 
+      enable_service  => $enable_service
+    }
     
     file { "/etc/redis.conf":
         ensure => present,
