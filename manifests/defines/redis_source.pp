@@ -34,23 +34,22 @@ define redis_source(
              }
         }
     }
+    
     exec { "make ${version}":
          cwd => "${path}/redis_${version}",
          command => "make && mv redis-server ${bin}/ && mv redis-cli ${bin}/ && mv redis-benchmark ${bin}/ && mv redis-check-dump ${bin}/",
          creates => "${bin}/redis-server",
     }
+    
     file { db_folder:
         path => "/var/lib/redis",
         ensure => "directory",
         owner => $owner,
         group => $group,
     }
-    file { "/etc/init.d/redis-server":
-         content => template("redis/redis-server.erb"),
-         owner => root,
-         group => root,
-         mode => 744,
-    }
+    
+    redis::service { 'default_redis_service': }
+    
     file { "/etc/redis.conf":
         ensure => present,
         content => template("redis/redis.conf.erb"),
