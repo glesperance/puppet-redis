@@ -1,5 +1,5 @@
 define redis_source(
-    $version = 'v2.0.4-stable',
+    $version = '2.2.13',
     $path = '/usr/local/src',
     $bin = '/usr/local/bin',
     $owner = 'redis',
