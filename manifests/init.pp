@@ -10,6 +10,6 @@ class redis($enable_service = true) {
         owner           => "redis",
         group           => "redis",
         require         => User["redis"],
-        enabled_service => $enable_service
+        enable_service  => $enable_service
     }
 }
