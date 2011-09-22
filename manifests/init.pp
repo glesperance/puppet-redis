@@ -3,8 +3,7 @@ import "defines/*.pp"
 class redis($enable_service = true) {
     
     user { "redis":
-      ensure => present,
-      bin    => $bin
+      ensure => present
     }
     
     redis_source { git: 
