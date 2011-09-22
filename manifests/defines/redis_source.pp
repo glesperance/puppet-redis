@@ -19,7 +19,8 @@ define redis_source(
                   cwd => "${path}/redis_${version}",
                   creates => "${path}/redis_${version}/redis.c",
                   require => File["redis_folder"],
-                  before => Exec["make ${version}"]
+                  before => Exec["make ${version}"],
+                  path => ["/usr/bin", "/usr/sbin", "/bin"]
              }
              file { "${path}/redis_${version}/redis_${version}.tar.gz":
                   ensure => absent,
