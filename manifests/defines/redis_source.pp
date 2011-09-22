@@ -8,13 +8,13 @@ define redis_source(
 ) {
     case $version {
         default: {
-             file { redis_folder:
+             file { 'redis_folder':
                  path => "${path}/redis_${version}",
                  ensure => "directory",
                  owner => root,
                  group => root
              }
-             exec { redis_code: 
+             exec { 'redis_code': 
                   command =>"wget http://github.com/antirez/redis/tarball/${version} -O redis_${version}.tar.gz && tar --strip-components 1 -xzvf redis_${version}.tar.gz",
                   cwd => "${path}/redis_${version}",
                   creates => "${path}/redis_${version}/redis.c",
@@ -42,15 +42,11 @@ define redis_source(
          creates => "${bin}/redis-server",
     }
     
-    file { db_folder:
+    file { 'db_folder':
         path => "/var/lib/redis",
         ensure => "directory",
         owner => $owner,
         group => $group,
-    }
-    
-    redis::service { 'default_redis_service': 
-      enable_service  => $enable_service
     }
     
     file { "/etc/redis.conf":

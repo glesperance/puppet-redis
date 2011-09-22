@@ -9,8 +9,6 @@ define redis::service(
     $group = 'redis'
 ) {
   
-  
-  
   $full_name = "redis-${name}"
   
   file { "/etc/init.d/${full_name}":
