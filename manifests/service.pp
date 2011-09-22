@@ -1,4 +1,6 @@
-define redis::service($name = 'server', $config_file = '/etc/redis.conf', $enable_service = true) {
+define redis::service($name = 'server', $config_file = '/etc/redis.conf', $enable_service = true, $bin = '/usr/local/bin') {
+  
+  
   
   $full_name = "redis-${name}"
   
