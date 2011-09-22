@@ -1,4 +1,13 @@
-define redis::service($name = 'server', $config_file = '/etc/redis.conf', $enable_service = true, $bin = '/usr/local/bin') {
+define redis::service(
+    $name = 'server', 
+    $config_file = '/etc/redis.conf',
+    $enable_service = true, 
+    $version = '2.2.13',
+    $path = '/usr/local/src',
+    $bin = '/usr/local/bin',
+    $owner = 'redis',
+    $group = 'redis'
+) {
   
   
   

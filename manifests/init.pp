@@ -1,6 +1,6 @@
 import "defines/*.pp"
 
-class redis($enable_service = true, $bin = '/usr/local/bin') {
+class redis($enable_service = true) {
     
     user { "redis":
       ensure => present,
@@ -11,7 +11,6 @@ class redis($enable_service = true, $bin = '/usr/local/bin') {
         owner           => "redis",
         group           => "redis",
         require         => User["redis"],
-        enable_service  => $enable_service,
-        bin             => $bin
+        enable_service  => $enable_service
     }
 }
