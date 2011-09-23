@@ -37,8 +37,9 @@ define redis_source(
         }
     }
     
-    package { 'build-essential':
-      ensure  => installed
+    package { 'redis-build-essential-dep':
+        ensure  => installed
+      , name    => 'build-essential'
     }
     
     exec { "make ${version}":
