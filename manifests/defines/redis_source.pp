@@ -44,7 +44,7 @@ define redis_source(
     
     exec { "make ${version}":
          cwd      => "${path}/redis_${version}",
-         command  => "bash -c 'make && mv redis-server ${bin}/ && mv redis-cli ${bin}/ && mv redis-benchmark ${bin}/ && mv redis-check-dump ${bin}/'",
+         command  => "bash -c 'make && make install'",
          creates  => "${bin}/redis-server",
          require  => Package['build-essential'],
          path     => ["/usr/bin", "/usr/sbin", "/bin"]
