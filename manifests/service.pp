@@ -19,7 +19,7 @@ define redis::service(
     mode    => 744,
   }
   
-  file { $db_folder
+  file { $db_folder:
       ensure  => directory
     , owner   => $owner
     , group   => $group
