@@ -36,7 +36,7 @@ case "$1" in
     touch $PIDFILE $LOGFILE
     chown <%= owner %>:<%= group %> $PIDFILE $LOGFILE
     if start-stop-daemon --start --quiet --umask 007 --pidfile $PIDFILE --chuid <%= owner %>:<%= group %> --exec $DAEMON -- $DAEMON_ARGS
-    then
+    then-  r
         echo "$NAME."
     else
         echo "failed"
