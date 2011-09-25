@@ -22,7 +22,7 @@ define redis::service(
       enable      => $enable_service
     , ensure      => $enable_service
     , hasrestart  => true
-    , require     => File["/etc/init.d/${full_name}"]
+    , require     => [File["/etc/init.d/${full_name}"], Class['redis']]
   }
 
 }
