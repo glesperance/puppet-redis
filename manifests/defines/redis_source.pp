@@ -50,13 +50,6 @@ define redis_source(
          path     => ["/usr/bin", "/usr/sbin", "/bin"]
     }
     
-    file { 'db_folder':
-        path => "/var/lib/redis",
-        ensure => "directory",
-        owner => $owner,
-        group => $group,
-    }
-    
     file { "/etc/redis.conf":
         ensure => present,
         content => template("redis/redis.conf.erb"),
