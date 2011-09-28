@@ -17,6 +17,7 @@ define redis::service(
     owner   => root,
     group   => root,
     mode    => 744,
+    notify  => Service[$full_name]
   }
   
   file { $db_folder:
