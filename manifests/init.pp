@@ -6,10 +6,12 @@ class redis($enable_service = true) {
       ensure => present,
     }
     
-    redis_source { git: 
+    redis_source { 'redis-source': 
         owner           => "redis",
         group           => "redis",
         require         => User["redis"],
-        enabled_service => $enable_service
+        enable_service  => $enable_service
     }
+    
+
 }
