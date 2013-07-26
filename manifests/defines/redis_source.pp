@@ -1,6 +1,6 @@
 define redis_source(
     $enable_service,
-    $version = '2.4.1',
+    $version = '2.6.14',
     $path = '/usr/local/src',
     $bin = '/usr/local/bin',
     $owner = 'redis',
@@ -45,7 +45,7 @@ define redis_source(
     exec { "make ${version}":
          cwd      => "${path}/redis_${version}",
          command  => "bash -c 'make && make install PREFIX=`dirname ${bin}`'",
-         creates  => "${bin}/redis-server",
+         unless  => "test \"$(${bin}/redis-server --version | grep '${version}')\""
          require  => Package['build-essential'],
          path     => ["/usr/bin", "/usr/sbin", "/bin"]
     }
