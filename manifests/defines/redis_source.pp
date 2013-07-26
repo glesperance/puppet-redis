@@ -45,7 +45,7 @@ define redis_source(
     exec { "make ${version}":
          cwd      => "${path}/redis_${version}",
          command  => "bash -c 'make && make install PREFIX=`dirname ${bin}`'",
-         unless  => "test \"$(${bin}/redis-server --version | grep '${version}')\""
+         unless  => "test \"$(${bin}/redis-server --version | grep '${version}')\"",
          require  => Package['build-essential'],
          path     => ["/usr/bin", "/usr/sbin", "/bin"]
     }
