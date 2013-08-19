@@ -13,5 +13,11 @@ class redis($enable_service = true) {
         enable_service  => $enable_service
     }
     
+    augeas { 'sysctl':
+      context => '/files/etc/sysctl.conf',
+      changes => [
+        'set vm.overcommit_memory =1'
+      ]
+    }
 
 }
