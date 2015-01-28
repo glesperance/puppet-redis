@@ -7,9 +7,17 @@ Config file goes to /etc/redis.conf
 Contains definition redis_source, which allows you
 to configure following parameters:
 
-    $version - version of the redis you want to install
-    $path - path where you want to install it
-    $owner/$group - user/group under which redis process would be running.
+    $version            - version of the redis you want to install
+    $path               - path where you want to install it
+    $owner/$group       - user/group under which redis process would be running.
+
+    $redis_service_name - service name of the redis server ; defaults to 'redis'
+    $redis_port         - listen port of the redis server; defaults to 6379
+    $redis_maxmemory    - maxmemory amount for the redis-server config ; defaults to '500MB'
+    $redis_appendonly   - appendonly value for the redis-server; defaults to 'yes'
+
+    $config_file = undef,
+    $db_folder  = undef
 
 Database will be saved to /var/lib/redis 
 

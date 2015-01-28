@@ -18,15 +18,15 @@
 
 # By default Redis does not run as a daemon. Use 'yes' if you need it.
 # Note that Redis will write a pid file in /var/run/redis.pid when daemonized.
-daemonize no
+daemonize yes
 
 # When running daemonized, Redis writes a pid file in /var/run/redis.pid by
 # default. You can specify a custom pid file location here.
-pidfile /var/run/redis.pid
+pidfile /var/run/<%= @redis_service_name%>.pid
 
 # Accept connections on the specified port, default is 6379.
 # If port 0 is specified Redis will not listen on a TCP socket.
-port 6379
+port <%= @redis_port%>
 
 # If you want you can bind a single interface, if the bind option is not
 # specified all the interfaces will listen for incoming connections.
@@ -70,7 +70,7 @@ loglevel notice
 # Specify the log file name. Also 'stdout' can be used to force
 # Redis to log on the standard output. Note that if you use standard
 # output for logging but daemonize, logs will be sent to /dev/null
-logfile stdout
+logfile /var/log/<%= @redis_service_name%>.log
 
 # To enable logging to the system logger, just set 'syslog-enabled' to yes,
 # and optionally update the other syslog parameters to suit your needs.
@@ -109,9 +109,9 @@ databases 16
 #
 #   save ""
 
-save 900 1
-save 300 10
-save 60 10000
+#save 900 1
+# save 300 10
+# save 60 10000
 
 # By default Redis will stop accepting writes if RDB snapshots are enabled
 # (at least one save point) and the latest background save failed.
@@ -154,7 +154,7 @@ dbfilename dump.rdb
 # The Append Only File will also be created inside this directory.
 # 
 # Note that you must specify a directory here, not a file name.
-dir ./
+dir /var/lib/<%= @redis_service_name%>/
 
 ################################# REPLICATION #################################
 
@@ -316,7 +316,7 @@ slave-priority 100
 # limit for maxmemory so that there is some free RAM on the system for slave
 # output buffers (but this is not needed if the policy is 'noeviction').
 #
-# maxmemory <bytes>
+maxmemory <%= @redis_maxmemory%>
 
 # MAXMEMORY POLICY: how Redis will select what to remove when maxmemory
 # is reached. You can select among five behaviors:
@@ -369,7 +369,7 @@ slave-priority 100
 #
 # Please check http://redis.io/topics/persistence for more information.
 
-appendonly no
+appendonly <%= @redis_appendonly%>
 
 # The name of the append only file (default: "appendonly.aof")
 # appendfilename appendonly.aof
